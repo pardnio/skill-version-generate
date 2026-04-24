@@ -31,7 +31,7 @@
 - **Conventional Commits First** — Parses `feat:` / `fix:` prefixes first; falls back to diff semantics when absent.
 - **Traceable Changelog** — Every entry carries PR number, author handle, commit hash, and GitHub compare link.
 - **Enforced Breaking Migration** — Breaking changes must include migration guidance, or generation aborts without a partial file.
-- **Auto-Maintained Master Index** — Syncs `.doc/CHANGELOG.md` by prepending the new release with summary counts.
+- **Auto-Maintained Master Index** — Syncs `.doc/version-generate/CHANGELOG.md` by prepending the new release with summary counts.
 
 ## Built With
 
@@ -47,8 +47,8 @@
 graph TB
     A[User runs /version-generate] --> B[SKILL.md contract]
     B --> C[scripts/ step implementations]
-    C --> D[.doc/vX.Y.Z.md]
-    C --> E[.doc/CHANGELOG.md]
+    C --> D[.doc/version-generate/vX.Y.Z.md]
+    C --> E[.doc/version-generate/CHANGELOG.md]
 ```
 
 ## License

@@ -31,7 +31,7 @@
 - **Conventional Commits 優先** — 先解析 `feat:` / `fix:` 前綴，無前綴才退回 diff 語意分析。
 - **可追溯 changelog** — 每條變更帶 PR 編號、作者 handle、commit hash 與 GitHub compare 連結。
 - **BREAKING 強制 Migration** — 破壞性變更必附遷移指引，否則中止產出不留殘缺文件。
-- **主索引自動維護** — 同步更新 `.doc/CHANGELOG.md`，新版本 prepend 至最前並附摘要統計。
+- **主索引自動維護** — 同步更新 `.doc/version-generate/CHANGELOG.md`，新版本 prepend 至最前並附摘要統計。
 
 ## 技術堆疊
 
@@ -47,8 +47,8 @@
 graph TB
     A[使用者觸發 /version-generate] --> B[SKILL.md 契約]
     B --> C[scripts/ 步驟實作]
-    C --> D[.doc/vX.Y.Z.md]
-    C --> E[.doc/CHANGELOG.md]
+    C --> D[.doc/version-generate/vX.Y.Z.md]
+    C --> E[.doc/version-generate/CHANGELOG.md]
 ```
 
 ## 授權

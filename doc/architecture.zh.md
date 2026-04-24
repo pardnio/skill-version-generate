@@ -13,8 +13,8 @@ graph TB
     S2 --> S3[Step 3-4<br/>分類與版號計算]
     S3 --> S4[Step 5<br/>輸出 changelog]
     S4 --> S5[Step 6<br/>更新主索引]
-    S4 --> OutA[.doc/vX.Y.Z.md]
-    S5 --> OutB[.doc/CHANGELOG.md]
+    S4 --> OutA[.doc/version-generate/vX.Y.Z.md]
+    S5 --> OutB[.doc/version-generate/CHANGELOG.md]
     Rules[scripts/06<br/>分類規則與邊界案例] -.套用.-> S2
     Rules -.套用.-> S3
     Rules -.套用.-> S4
@@ -98,7 +98,7 @@ graph TB
         Mig --> Changes[Changes 區段]
         Skip --> Changes
         Changes --> Scope[Scope 區段]
-        Scope --> Write[寫入 .doc/vX.Y.Z.md]
+        Scope --> Write[寫入 .doc/version-generate/vX.Y.Z.md]
     end
 ```
 
@@ -107,7 +107,7 @@ graph TB
 ```mermaid
 graph LR
     subgraph IndexUpdater
-        Exist{.doc/CHANGELOG.md<br/>存在?} -- 否 --> Init[初始化<br/>標題 + 說明]
+        Exist{.doc/version-generate/CHANGELOG.md<br/>存在?} -- 否 --> Init[初始化<br/>標題 + 說明]
         Exist -- 是 --> Skip[保留]
         Init --> Prepend
         Skip --> Prepend[Prepend 新版本行]
@@ -141,8 +141,8 @@ sequenceDiagram
     alt breaking 無 migration
         Skill-->>User: ERROR + abort
     end
-    Skill->>FS: write .doc/NEW_VERSION.md
-    Skill->>FS: prepend .doc/CHANGELOG.md
+    Skill->>FS: write .doc/version-generate/NEW_VERSION.md
+    Skill->>FS: prepend .doc/version-generate/CHANGELOG.md
     FS-->>User: 發版文件就緒
 ```
 

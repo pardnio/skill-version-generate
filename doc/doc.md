@@ -68,8 +68,8 @@ Execution flow:
 2. Resolve the latest tag (`git tag -l 'v*.*.*' --sort=-v:refname | head -1`)
 3. Parse commits in `$LATEST_TAG..HEAD` (Conventional Commits first)
 4. Compute `NEW_VERSION` by tag priority
-5. Write `.doc/NEW_VERSION.md` with frontmatter and traceability fields
-6. Prepend one line to `.doc/CHANGELOG.md`
+5. Write `.doc/version-generate/NEW_VERSION.md` with frontmatter and traceability fields
+6. Prepend one line to `.doc/version-generate/CHANGELOG.md`
 
 ### Advanced
 
@@ -107,8 +107,8 @@ When commits contain only `STYLE` / `DOC` / `TEST` / `CHORE` types, `type: none`
 | 1 | `scripts/01-detect-version.md` | Resolve `LATEST_TAG`; normalize `REMOTE_URL` |
 | 2 | `scripts/02-collect-changes.md` | Conventional Commits parsing + diff fallback |
 | 3 | `scripts/03-classify-and-bump.md` | Tag classification and SemVer computation |
-| 4 | `scripts/04-output-template.md` | Emit full `.doc/NEW_VERSION.md` template |
-| 5 | `scripts/05-update-index.md` | Prepend new release to `.doc/CHANGELOG.md` |
+| 4 | `scripts/04-output-template.md` | Emit full `.doc/version-generate/NEW_VERSION.md` template |
+| 5 | `scripts/05-update-index.md` | Prepend new release to `.doc/version-generate/CHANGELOG.md` |
 | ∞ | `scripts/06-rules-and-edge-cases.md` | Classification rules and edge cases |
 
 ### Conventional Commits type mapping
@@ -168,8 +168,8 @@ Each change entry suffix is `(#PR, @author) [short_hash]`; missing fields drop t
 
 | Path | Content |
 |---|---|
-| `.doc/vX.Y.Z.md` | Complete changelog for a single release |
-| `.doc/CHANGELOG.md` | Master index (newest on top) |
+| `.doc/version-generate/vX.Y.Z.md` | Complete changelog for a single release |
+| `.doc/version-generate/CHANGELOG.md` | Master index (newest on top) |
 
 ### Abort conditions
 

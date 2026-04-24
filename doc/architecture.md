@@ -13,8 +13,8 @@ graph TB
     S2 --> S3[Step 3-4<br/>Classify and bump]
     S3 --> S4[Step 5<br/>Emit changelog]
     S4 --> S5[Step 6<br/>Update master index]
-    S4 --> OutA[.doc/vX.Y.Z.md]
-    S5 --> OutB[.doc/CHANGELOG.md]
+    S4 --> OutA[.doc/version-generate/vX.Y.Z.md]
+    S5 --> OutB[.doc/version-generate/CHANGELOG.md]
     Rules[scripts/06<br/>Rules and edge cases] -.applies.-> S2
     Rules -.applies.-> S3
     Rules -.applies.-> S4
@@ -98,7 +98,7 @@ graph TB
         Mig --> Changes[Changes section]
         Skip --> Changes
         Changes --> Scope[Scope section]
-        Scope --> Write[write .doc/vX.Y.Z.md]
+        Scope --> Write[write .doc/version-generate/vX.Y.Z.md]
     end
 ```
 
@@ -107,7 +107,7 @@ graph TB
 ```mermaid
 graph LR
     subgraph IndexUpdater
-        Exist{.doc/CHANGELOG.md<br/>exists?} -- no --> Init[initialize<br/>title + preamble]
+        Exist{.doc/version-generate/CHANGELOG.md<br/>exists?} -- no --> Init[initialize<br/>title + preamble]
         Exist -- yes --> Skip[preserve]
         Init --> Prepend
         Skip --> Prepend[prepend new version line]
@@ -141,8 +141,8 @@ sequenceDiagram
     alt breaking without migration
         Skill-->>User: ERROR + abort
     end
-    Skill->>FS: write .doc/NEW_VERSION.md
-    Skill->>FS: prepend .doc/CHANGELOG.md
+    Skill->>FS: write .doc/version-generate/NEW_VERSION.md
+    Skill->>FS: prepend .doc/version-generate/CHANGELOG.md
     FS-->>User: release artifacts ready
 ```
 

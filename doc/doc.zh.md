@@ -68,8 +68,8 @@ gh auth login
 2. 取得最新標籤（`git tag -l 'v*.*.*' --sort=-v:refname | head -1`）
 3. 解析 `$LATEST_TAG..HEAD` 的 commits（Conventional Commits 優先）
 4. 依標籤優先權計算 `NEW_VERSION`
-5. 產出 `.doc/NEW_VERSION.md`（含 frontmatter、追溯欄位）
-6. Prepend 一行至 `.doc/CHANGELOG.md`
+5. 產出 `.doc/version-generate/NEW_VERSION.md`（含 frontmatter、追溯欄位）
+6. Prepend 一行至 `.doc/version-generate/CHANGELOG.md`
 
 ### 進階
 
@@ -107,8 +107,8 @@ BREAKING CHANGE: Login now requires context.Context and Credentials struct.
 | 1 | `scripts/01-detect-version.md` | 取得 `LATEST_TAG`、正規化 `REMOTE_URL` |
 | 2 | `scripts/02-collect-changes.md` | Conventional Commits 解析 + diff fallback |
 | 3 | `scripts/03-classify-and-bump.md` | 分類標籤與 SemVer 版號計算 |
-| 4 | `scripts/04-output-template.md` | 產出 `.doc/NEW_VERSION.md` 完整模板 |
-| 5 | `scripts/05-update-index.md` | Prepend 新版本至 `.doc/CHANGELOG.md` |
+| 4 | `scripts/04-output-template.md` | 產出 `.doc/version-generate/NEW_VERSION.md` 完整模板 |
+| 5 | `scripts/05-update-index.md` | Prepend 新版本至 `.doc/version-generate/CHANGELOG.md` |
 | ∞ | `scripts/06-rules-and-edge-cases.md` | 分類規則與邊界案例 |
 
 ### Conventional Commits 型別映射
@@ -168,8 +168,8 @@ BREAKING CHANGE: Login now requires context.Context and Credentials struct.
 
 | 路徑 | 內容 |
 |---|---|
-| `.doc/vX.Y.Z.md` | 單版本完整 changelog |
-| `.doc/CHANGELOG.md` | 主索引（最新在最上） |
+| `.doc/version-generate/vX.Y.Z.md` | 單版本完整 changelog |
+| `.doc/version-generate/CHANGELOG.md` | 主索引（最新在最上） |
 
 ### 中止條件
 
