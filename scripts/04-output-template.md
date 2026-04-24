@@ -6,7 +6,19 @@
 mkdir -p .doc
 ```
 
-生成 `.doc/NEW_VERSION.md`（例：`.doc/v1.3.0.md`），依以下模板填入：
+生成 `.doc/NEW_VERSION.md`（例：`.doc/v1.3.0.md`），依以下模板填入。
+
+## 結構區塊
+
+輸出檔必須包含三個結構化區塊，順序與內容不得調換：
+
+| 區塊 | 內容 | 對應段落 |
+|---|---|---|
+| **上段** | 發布者資訊與時間 | Frontmatter（`released_by` / `date` / `contributors` / `co_authors`） |
+| **中段** | 變更紀錄與對應 commit hash | `## Summary` / `## ⚠️ Breaking Changes` / `## Changes` / `## Scope` |
+| **底部** | 版本映射（SemVer 規則） | `### Version Mapping (SemVer)` 表格 |
+
+## 範本
 
 ````markdown
 ---
@@ -144,6 +156,17 @@ client.Login(ctx, Credentials{User: "alice", Pass: "secret"})
 - `pkg/auth/` — FEAT, REFACTOR, SECURITY
 - `pkg/cache/` — PERF
 - `docs/` — DOC
+
+***
+
+### Version Mapping (SemVer)
+
+| Detected Tag | Version Impact |
+|---|---|
+| `BREAKING` | MAJOR (+1.0.0) |
+| `FEAT` | MINOR (+0.1.0) |
+| `FIX` / `UPDATE` / `SECURITY` / `REFACTOR` / `PERF` / `ADD` / `REMOVE` | PATCH (+0.0.1) |
+| `STYLE` / `DOC` / `TEST` / `CHORE` | No bump (`type: none`, skip index) |
 
 ***
 
